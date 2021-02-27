@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_product")
@@ -13,12 +14,8 @@ public class Product  implements Serializable {
     private final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     private String name;
 
@@ -29,18 +26,17 @@ public class Product  implements Serializable {
     public Product() {
     }
 
-    public Product(String id, String name, String description, Double price) {
-        this.id = id;
+    public Product(String name, String description, Double price) {
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
