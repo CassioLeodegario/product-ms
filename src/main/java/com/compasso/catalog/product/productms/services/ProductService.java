@@ -7,6 +7,7 @@ import com.compasso.catalog.product.productms.services.exceptions.ObjectNotFound
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,6 +37,10 @@ public class ProductService {
                 "Product not found! Id: " + productId));
         updateData(productDto, product);
         return productRepository.save(product);
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 
     private void updateData(ProductDTO productDTO, Product product) {

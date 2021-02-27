@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/products")
@@ -30,9 +32,16 @@ public class ProductResource {
     }
 
     @RequestMapping(path = "{id}",method= RequestMethod.GET)
-    public ResponseEntity<Product> insert(@PathVariable UUID id) {
+    public ResponseEntity<ProductDTO> insert(@PathVariable UUID id) {
         Product product = productService.find(id);
-        return ResponseEntity.ok().body(product);
+        return ResponseEntity.ok().body(new ProductDTO(product));
+    }
+
+    @RequestMapping(method=RequestMethod.GET)
+    public ResponseEntity<List<ProductDTO>> findAll() {
+        List<Product> products = productService.findAll();
+        List<ProductDTO> productDTOS = products.stream().map(obj -> new ProductDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(productDTOS);
     }
 
 }
