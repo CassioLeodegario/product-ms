@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -19,6 +20,18 @@ public class ProductResource {
     @RequestMapping(method= RequestMethod.POST)
     public ResponseEntity<Product> insert(@Valid @RequestBody ProductDTO objDto) {
         Product product = productService.insert(objDto);
+        return ResponseEntity.ok().body(product);
+    }
+
+    @RequestMapping(path = "{id}",method= RequestMethod.PUT)
+    public ResponseEntity<Product> insert(@Valid @RequestBody ProductDTO objDto, @PathVariable UUID id) {
+        Product product = productService.update(objDto, id);
+        return ResponseEntity.ok().body(product);
+    }
+
+    @RequestMapping(path = "{id}",method= RequestMethod.GET)
+    public ResponseEntity<Product> insert(@PathVariable UUID id) {
+        Product product = productService.find(id);
         return ResponseEntity.ok().body(product);
     }
 

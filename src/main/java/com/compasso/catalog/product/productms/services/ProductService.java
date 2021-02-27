@@ -20,7 +20,7 @@ public class ProductService {
     public Product find(UUID id) {
         Optional<Product> obj = productRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Object not found! Id: " + id + ", Type: " + Product.class.getName()));
+                "Object not found! Id: " + id));
     }
 
     public Product insert(ProductDTO objDto) {
@@ -28,6 +28,20 @@ public class ProductService {
         obj.setId(null);
         obj = productRepository.save(obj);
         return obj;
+    }
+
+    public Product update(ProductDTO productDto, UUID productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        Product product = optionalProduct.orElseThrow(() -> new ObjectNotFoundException(
+                "Product not found! Id: " + productId));
+        updateData(productDto, product);
+        return productRepository.save(product);
+    }
+
+    private void updateData(ProductDTO productDTO, Product product) {
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
     }
 
     public Product fromDTO(ProductDTO objDto) {
