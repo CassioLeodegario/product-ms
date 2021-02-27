@@ -1,4 +1,4 @@
-package com.compasso.catalog.product.productms;
+package com.compasso.catalog.product.productms.resources;
 
 import com.compasso.catalog.product.productms.dto.ProductDTO;
 import com.compasso.catalog.product.productms.entities.Product;
