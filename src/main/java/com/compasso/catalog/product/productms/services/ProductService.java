@@ -43,6 +43,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> search(String query, Double minPrice, Double maxPrice) {
+        return productRepository.search(query, minPrice, maxPrice);
+    }
+
     private void updateData(ProductDTO productDTO, Product product) {
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());

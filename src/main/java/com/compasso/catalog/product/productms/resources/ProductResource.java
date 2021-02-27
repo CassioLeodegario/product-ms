@@ -44,4 +44,16 @@ public class ProductResource {
         return ResponseEntity.ok().body(productDTOS);
     }
 
+    @RequestMapping(path = "/search", method=RequestMethod.GET)
+    public ResponseEntity<List<ProductDTO>> search(
+            @RequestParam(value="q", required = false) String query,
+            @RequestParam(value="min_price", required = false) Double minPrice,
+            @RequestParam(value="max_price", required = false) Double maxPrice) {
+        List<Product> products = productService.search(query, minPrice, maxPrice);
+        List<ProductDTO> productDTOS = products.stream().map(obj -> new ProductDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(productDTOS);
+
+    }
+
+
 }
