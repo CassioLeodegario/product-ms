@@ -1,5 +1,6 @@
 package com.compasso.catalog.product.productms.services;
 
+import com.compasso.catalog.product.productms.dto.ProductDTO;
 import com.compasso.catalog.product.productms.entities.Product;
 import com.compasso.catalog.product.productms.repositories.ProductRepository;
 import com.compasso.catalog.product.productms.services.exceptions.ObjectNotFoundException;
@@ -22,11 +23,15 @@ public class ProductService {
                 "Object not found! Id: " + id + ", Type: " + Product.class.getName()));
     }
 
-
-    public Product insert(Product obj) {
+    public Product insert(ProductDTO objDto) {
+        Product obj = fromDTO(objDto);
         obj.setId(null);
         obj = productRepository.save(obj);
         return obj;
+    }
+
+    public Product fromDTO(ProductDTO objDto) {
+        return new Product(objDto.getId(), objDto.getName(), objDto.getDescription(), objDto.getPrice());
     }
 
 
