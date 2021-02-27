@@ -2,6 +2,9 @@ package com.compasso.catalog.product.productms.dto;
 
 import com.compasso.catalog.product.productms.entities.Product;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -9,8 +12,15 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private UUID id;
+
+    @NotEmpty(message="Name is required")
     private String name;
+
+    @NotEmpty(message="Description is required")
     private String description;
+
+    @NotNull(message="Price is required")
+    @Positive(message = "Price should be positive")
     private Double price;
 
     public ProductDTO() {
