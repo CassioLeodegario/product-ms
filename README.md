@@ -37,7 +37,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ### <a name="rodando"></a>Rodando o Projeto
 
-#### <a name="jre"></a>Diretamente com a JRE via terminal (Necessita da versão correta do JAVA instalada)
+#### <a name="jre"></a>Diretamente com a JRE via terminal
 
 
 ```bash
