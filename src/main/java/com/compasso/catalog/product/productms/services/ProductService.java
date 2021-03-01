@@ -48,6 +48,11 @@ public class ProductService {
         return productRepository.search(query, minPrice, maxPrice);
     }
 
+    public void delete(UUID id) {
+        find(id);
+        productRepository.deleteById(id);
+    }
+
     private void updateData(ProductDTO productDTO, Product product) {
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());

@@ -55,5 +55,11 @@ public class ProductResource {
 
     }
 
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        productService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
