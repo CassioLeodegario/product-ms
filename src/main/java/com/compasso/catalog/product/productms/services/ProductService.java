@@ -32,9 +32,7 @@ public class ProductService {
     }
 
     public Product update(ProductDTO productDto, UUID productId) {
-        Optional<Product> optionalProduct = productRepository.findById(productId);
-        Product product = optionalProduct.orElseThrow(() -> new ObjectNotFoundException(
-                "Product not found! Id: " + productId));
+        Product product = find(productId);
         updateData(productDto, product);
         return productRepository.save(product);
     }
