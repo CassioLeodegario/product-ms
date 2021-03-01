@@ -44,6 +44,7 @@ public class ProductService {
     }
 
     public List<Product> search(String query, Double minPrice, Double maxPrice) {
+        query = "%" + query + "%";
         return productRepository.search(query, minPrice, maxPrice);
     }
 
