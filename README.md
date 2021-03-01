@@ -69,9 +69,6 @@ $ git clone https://github.com/CassioLeodegario/product-ms
 # Acesse a pasta do projeto no terminal/cmd
 $ cd product-ms
 
-# execute o comando mvnw clean package
-$ ./mvnw clean package
-
 # Gere a imagem docker do projeto
 $ docker build -t product-ms:v1 .
 
